@@ -12,7 +12,7 @@ import pandas as pd
 st.set_page_config(page_title="Intelligent Logistics & DAA Optimizer", layout="wide")
 
 st.title("📦 Intelligent Logistics Route & Inventory Cost Optimizer")
-st.markdown("### University DAA & PL/SQL Dual-Purpose Project Dashboard")
+st.markdown("### University DAA Project Dashboard")
 st.markdown("---")
 
 # --- INITIALIZE SESSION STATE FOR DYNAMIC DATABASE ---
