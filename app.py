@@ -33,11 +33,6 @@ if 'graph_data' not in st.session_state:
         'Kanpur Hub': {'Jaipur Depot': {'weight': 550, 'cost': 2400}, 'Agra Center': {'weight': 330, 'cost': 1500}, 'Delhi Hub': {'weight': 490, 'cost': 2100}}
     }
 
-if 'audit_logs' not in st.session_state:
-    st.session_state.audit_logs = [
-        {"Log ID": 101, "Timestamp": "2026-10-30 08:30:12", "Event Type": "THRESHOLD_ALERT", "Message": "Item Dry Rations dropped to 40 (Below threshold 60)"},
-        {"Log ID": 102, "Timestamp": "2026-10-30 09:15:45", "Event Type": "STOCK_UPDATE", "Message": "Added 50 units of Medical Kits to Delhi Hub."}
-    ]
 
 # --- DIJKSTRA'S ALGORITHM ---
 def dijkstra(graph, start, goal):
@@ -90,7 +85,7 @@ st.sidebar.header("Navigation & Controls")
 app_mode = st.sidebar.selectbox("Choose View", [
     "Route & Path Optimizer (Dijkstra)", 
     "Cargo Loader (Knapsack DP)", 
-    "Database & Audit Logs View"
+    "Database Management"
 ])
 
 nodes = list(st.session_state.graph_data.keys())
@@ -201,24 +196,3 @@ else:
     if not low_stock_items.empty:
         st.warning(f"⚠️ **Stock Alert:** {len(low_stock_items)} item(s) are at or below their reorder threshold and require restock orders!")
 
-    st.markdown("---")
-    
-    st.markdown("#### 3. Audit Logs Trigger Output (Oracle Live SQL Simulation)")
-    logs_df = pd.DataFrame(st.session_state.audit_logs)
-    st.dataframe(logs_df, use_container_width=True)
-    
-    with st.form("add_log_form"):
-        st.markdown("##### Insert New Custom Audit Log Entry")
-        new_msg = st.text_input("Log Message", placeholder="e.g. Stock level restored above threshold")
-        new_type = st.selectbox("Event Type", ["INFO", "THRESHOLD_ALERT", "STOCK_UPDATE"])
-        submitted = st.form_submit_button("Log Event")
-        if submitted and new_msg:
-            import datetime
-            new_entry = {
-                "Log ID": len(st.session_state.audit_logs) + 101,
-                "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "Event Type": new_type,
-                "Message": new_msg
-            }
-            st.session_state.audit_logs.append(new_entry)
-            st.rerun()
