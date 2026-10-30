@@ -27,16 +27,16 @@ streamlit run app.py
 ## Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dasboard.png)
+![Dashboard](screenshots/Dashboard.png)
 
 ### 0/1 Knapsack
-![0/1 Knapsack](screenshots/0%201%20knapsack.png)
+![0/1 Knapsack](screenshots/01knapscak.png)
 
 ### Graph Visualization
-![Graph Visualization](screenshots/grapg.png)
+![Graph Visualization](screenshots/graph.png)
 
 ### Editable Database
-![Editable Database](screenshots/DataBase%20Editable.png)
+![Editable Database](screenshots/DataBase.png)
 
 ## Author
 
